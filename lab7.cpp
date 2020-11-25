@@ -211,14 +211,8 @@ public:
 	}
 	Iterator& operator++()
 	{
-		try
-		{
-			if (size == 0);
-		}
-		catch (Exception)
-		{
-			cerr << "\nThe ring is empty" << endl;
-		}
+		if (size == 0)
+			throw Exception();
 		if (size == 1)
 			current = 0;
 		else
@@ -231,14 +225,8 @@ public:
 	}
 	void operator = (T x)
 	{
-		try
-		{
-			if (size == 0);
-		}
-		catch (Exception)
-		{
-			cerr << "\nThe ring is empty" << endl;
-		}
+		if (size == 0)
+			throw Exception();
 		node->data = x;
 	}
 	Iterator& operator[](int index)
@@ -265,7 +253,6 @@ public:
 		if (size == 0)
 			throw Exception();
 		int step, i, j;
-		T tmp, r1, r2;
 		for (step = size / 2; step > 0; step /= 2)
 			for (i = step; i < size; i++)
 				for (j = i - step; j >= 0 && (*this)[j].node->data > (*this)[j + step].node->data; j -= step)
